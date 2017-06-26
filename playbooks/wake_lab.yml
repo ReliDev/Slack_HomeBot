@@ -1,0 +1,14 @@
+---
+# file: playbooks/wake_lab.yml
+#
+# hey let's wake up one of the lab machines
+- hosts: localhost
+  gather_facts: False
+  connection: local
+  become: yes
+  vars_files:
+    - "{{ machine }}"
+  tasks:
+    - name: Wake the machine
+      #command: "arp -W {{ mac }} {{ interface }}"  # openbsd variant
+      command: "ether-wake -i {{ interface }} {{ mac }}"   # linux variant

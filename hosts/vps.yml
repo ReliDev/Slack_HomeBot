@@ -1,0 +1,7 @@
+---
+# an example remote host for service monitoring
+services:
+  - plexmediaserver
+  - php54-php-fpm
+  - nginx
+  - mysqld

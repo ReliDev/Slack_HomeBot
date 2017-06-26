@@ -1,0 +1,15 @@
+---
+# file: playbooks/wifi_check.yml
+#
+# hey let's check the wifi
+- hosts: wifi
+  gather_facts: False
+  user: root
+  tasks:
+    - name: Check the wifi
+      raw: ps
+    - name: Check the wifi
+      raw: uptime
+      register: output
+    - name: Dump the command output 
+      debug: msg="{{ output.stdout_lines }}"

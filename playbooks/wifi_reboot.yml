@@ -1,0 +1,13 @@
+---
+# file: playbooks/wifi_reboot.yml
+#
+# hey let's reboot the damn wifi
+- hosts: wifi
+  gather_facts: False
+  user: root
+  tasks:
+    - name: Reboot the wifi
+      raw: reboot
+      register: output
+    - name: Dump the command output 
+      debug: msg="{{ output.stdout_lines }}"

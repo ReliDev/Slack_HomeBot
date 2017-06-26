@@ -1,0 +1,16 @@
+---
+# file: playbooks/shutdown_lab.yml
+#
+# hey let's shutdown  one of the lab machines
+- hosts: localhost
+  gather_facts: False
+  connection: local
+  vars_files:
+    - "{{ machine }}"
+  tasks:
+    - name: Set maintenance mode on
+      command: "ssh -i {{ ssh_key }} root@{{ management_ip }} esxcli system maintenanceMode set -e true -t 0"
+    - name: Send the command to power off the machine
+      command: "ssh -i {{ ssh_key }} root@{{ management_ip }} esxcli system shutdown poweroff -d 10 -r OK"
+    - name: Set maintenance mode off
+      command: "ssh -i {{ ssh_key }} root@{{ management_ip }} esxcli system maintenanceMode set -e false -t 0"

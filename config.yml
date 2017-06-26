@@ -1,0 +1,34 @@
+commands:
+  - name: Reboots the wireless router
+    slack_command: rebootwifi
+    run_command: ansible-playbook -i inventory playbooks/wifi_reboot.yml --private-key ./ssh_keys/wifi.key
+  - name: Checks the wifi
+    slack_command: checkwifi  
+    run_command: ansible-playbook -i inventory playbooks/wifi_check.yml --private-key ./ssh_keys/wifi.key
+  - name: Run a speedtest using speedtest-cli
+    slack_command: speedtest
+    run_command: ansible-playbook -i inventory playbooks/speedtest.yml
+  - name: Reloads asterisk
+    slack_command: reloadvoip
+    run_command: ansible-playbook -i inventory playbooks/voip_reload.yml
+  - name: Checks the current status of our asterisk peers
+    slack_command: checkvoip
+    run_command: ansible-playbook -i inventory playbooks/voip_check.yml
+  - name: Start up the sprawl ESX host
+    slack_command: startsprawl
+    run_command: ansible-playbook -i inventory playbooks/wake_lab.yml -e machine=/home/adam/code/homebot/hosts/sprawl.yml
+  - name: Shutdown the sprawl ESX host
+    slack_command: stopsprawl
+    run_command: ansible-playbook -i inventory playbooks/shutdown_lab.yml -e machine=/home/adam/code/homebot/hosts/sprawl.yml
+  - name: Check the current lab status
+    slack_command: checklab
+    run_command: bin/checklab
+  - name: Check the host uptime
+    slack_command: uptime
+    run_command: uptime
+  - name: Dump our internal network links
+    slack_command: dumplinks
+    run_command: bin/dumplinks
+  - name: Check the VPS host status
+    slack_command: checkvps
+    run_command: ansible-playbook -i inventory playbooks/vps_check.yml --private-key ./ssh_keys/esx.key -e vpshost=/home/adam/code/homebot/hosts/vps.yml

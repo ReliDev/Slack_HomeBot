@@ -1,0 +1,4 @@
+#!/bin/sh
+echo "------------------------------------------------------"
+echo "this prints a bunch of junk, whatever you want really."
+echo "------------------------------------------------------"

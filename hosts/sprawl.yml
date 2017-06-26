@@ -1,0 +1,6 @@
+---
+# an example wake-on-lan host
+mac: 'DE:AD:BE:EF:0F:B0'
+interface: 'sk0'
+management_ip: '192.168.100.50'
+ssh_key: '/home/adam/code/homebot/ssh_keys/sprawl.key'

@@ -1,0 +1,13 @@
+---
+# file: playbooks/voip_reload.yml
+#
+# hey let's reload asterisk 
+- hosts: voip
+  gather_facts: False
+  become: yes
+  tasks:
+    - name: Reload asterisk
+      command: "/usr/local/sbin/asterisk -x 'core reload'"
+      register: output
+    - name: Dump the command output 
+      debug: msg="{{ output.stdout_lines }}"

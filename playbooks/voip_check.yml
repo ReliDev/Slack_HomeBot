@@ -1,0 +1,13 @@
+---
+# file: playbooks/voip_check.yml
+#
+# hey let's check on asterisk 
+- hosts: voip
+  gather_facts: False
+  become: yes
+  tasks:
+    - name: Check on asterisk
+      command: "/usr/local/sbin/asterisk -x 'sip show peers'"
+      register: output
+    - name: Dump the command output 
+      debug: msg="{{ output.stdout_lines }}"

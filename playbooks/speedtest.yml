@@ -1,0 +1,14 @@
+---
+# file: playbooks/speedtest.yml
+#
+# hey let's run a speedtest using speedtest-cli
+- hosts: localhost
+  gather_facts: False
+  connection: local
+  become: no
+  tasks:
+    - name: Speedtest
+      command: "speedtest-cli"
+      register: output
+    - name: Dump the command output 
+      debug: msg="{{ output.stdout_lines }}"

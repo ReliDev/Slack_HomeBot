@@ -1,0 +1,8 @@
+[vps]
+vps.hostname.com
+
+[wifi]
+192.168.100.100
+
+[voip]
+localhost ansible_connection=local ansible_python_interpreter=/usr/local/bin/python2.7
